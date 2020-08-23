@@ -10,7 +10,7 @@ module.exports = env => {
 	return {
 		entry: "./src/app.js",
 		output: {
-			path: path.join(__dirname, "public"),
+			path: path.join(__dirname, "public", "dist"),
 			filename: "bundle.js",
 		},
 		module: {
@@ -25,9 +25,6 @@ module.exports = env => {
 					use: [
 						{
 							loader: MiniCssExtractPlugin.loader,
-							options: {
-								publicPath: path.join(__dirname, "public"),
-							},
 						},
 						{
 							loader: "css-loader",
@@ -56,6 +53,7 @@ module.exports = env => {
 		devServer: {
 			contentBase: path.join(__dirname, "public"),
 			historyApiFallback: true, // to let webpack not to make http request to server with url route getting changed
+			publicPath: "/dist/",
 			//and to let browser handle client-side routing
 		},
 	};
