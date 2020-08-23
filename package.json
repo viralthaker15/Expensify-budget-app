@@ -1,6 +1,9 @@
 {
 	"name": "expensify-app",
 	"version": "1.0.0",
+	"engines": {
+		"node": "12.3.1"
+	},
 	"main": "index.js",
 	"author": "Viral Thaker",
 	"license": "MIT",
