@@ -1,3 +1,7 @@
 node_modules
 yarn-error.log
 src/tests
+public/bundle.js
+public/bundle.js.map
+public/styles.css
+public/styles.css.map

@@ -6,7 +6,8 @@
 	"license": "MIT",
 	"scripts": {
 		"serve": "live-server public/",
-		"build": "webpack",
+		"build:dev": "webpack",
+		"build:prod": "webpack -p --env production",
 		"dev-server": "webpack-dev-server",
 		"start": "npm run dev-server",
 		"test": "jest"
@@ -31,17 +32,19 @@
 		"react-redux": "^7.2.1",
 		"react-router-dom": "^5.2.0",
 		"redux": "^4.0.5",
-		"sass-loader": "^9.0.2",
+		"sass-loader": "^6.0.6",
 		"style-loader": "^1.2.1",
 		"uuid": "^8.3.0",
-		"validator": "^13.1.1",
-		"webpack": "^4.44.0",
-		"webpack-dev-server": "^3.11.0"
+		"validator": "^13.1.1"
 	},
 	"devDependencies": {
 		"@babel/core": "^7.10.5",
 		"@babel/preset-env": "^7.10.4",
 		"@babel/preset-react": "^7.10.4",
-		"webpack-cli": "^3.3.12"
+		"extract-text-webpack-plugin": "^4.0.0-beta.0",
+		"mini-css-extract-plugin": "^0.10.0",
+		"webpack": "^4.44.1",
+		"webpack-cli": "^3.3.12",
+		"webpack-dev-server": "^3.11.0"
 	}
 }
