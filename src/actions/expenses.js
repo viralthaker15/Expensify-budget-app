@@ -1,6 +1,7 @@
-import { v4 as uuid } from "uuid";
 import database from "../firebase/firebase";
+import expenses from "../reducers/expenses";
 
+//ADD EXPENSE
 export const addExpense = expense => ({
 	type: "ADD_EXPENSE",
 	expense,
@@ -33,11 +34,42 @@ export const startAddExpense = (expenseData = {}) => {
 	};
 };
 
+//EDIT EXPENSE
 export const editExpense = (id, updates) => ({
 	type: "EDIT_EXPENSE",
 	id,
 	updates,
 });
+
+// SET EXPENSES
+export const setExpenses = expenses => ({
+	type: "SET_EXPENSES",
+	expenses,
+});
+
+export const startSetExpenses = () => {
+	return dispatch => {
+		return database
+			.ref("expenses")
+			.once("value")
+			.then(snapshot => {
+				const expenses = [];
+
+				snapshot.forEach(childSnapshot => {
+					expenses.push({
+						id: childSnapshot.key,
+						...childSnapshot.val(),
+					});
+				}); // parsing the data came from firebase object => array
+
+				dispatch(setExpenses(expenses));
+			});
+		//this promise returns a new promise
+		//we need to "return" this promise to another promise
+		//it creates promise chaining and we can use another then
+		//in the app.js
+	};
+};
 
 export const removeExpense = ({ id } = {}) => ({
 	type: "REMOVE_EXPENSE",
