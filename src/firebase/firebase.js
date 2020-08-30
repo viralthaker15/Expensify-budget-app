@@ -1,9 +1,10 @@
 import * as firebase from "firebase";
+import path from "path";
 
 const firebaseConfig = {
 	apiKey: process.env.FIREBASE_API_KEY,
 	authDomain: process.env.FIREBASE_AUTH_DOMAIN,
-	databaseURL: "https://expensify-1598.firebaseio.com", //idk why it throws error with env varible
+	databaseURL: process.env.FIREBASE_DATABASE_URL, //idk why it throws error with env varible
 	projectId: process.env.FIREBASE_PROJECT_ID,
 	storageBucket: process.env.FIREBASE_STORAGE_BUCKET,
 	messagingSenderId: process.env.FIREBASE_MESSAGING_SENDER_ID,
@@ -15,4 +16,6 @@ firebase.initializeApp(firebaseConfig);
 
 const database = firebase.database();
 
-export { firebase, database as default };
+const googleAuthProvider = new firebase.auth.GoogleAuthProvider();
+
+export { firebase, googleAuthProvider, database as default };

@@ -2,18 +2,18 @@ const path = require("path");
 //const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const webpack = require("webpack");
+const dotenv = require("dotenv");
 
 if (process.env.NODE_ENV === "development") {
-	require("dotenv").config({
-		path: ".env",
+	dotenv.config({
+		path: path.join(__dirname, ".env"),
 	});
-} //to use it for dev purpose only in production heroku we setup config on their cli
+	//to use it for dev purpose only in production heroku we setup config on their cli
+}
 
 module.exports = env => {
 	const isProduction = env === "production";
 	//const CSSExtract = new ExtractTextPlugin("styles.css");
-
-	console.log("env", env);
 	return {
 		entry: "./src/app.js",
 		output: {
