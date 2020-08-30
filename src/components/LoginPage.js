@@ -4,8 +4,6 @@ import { startLogin } from "../actions/auth";
 
 const LoginPage = ({ startLogin }) => (
 	<div>
-		<input type='text' />
-		<input type='password' />
 		<button onClick={startLogin}>Login</button>
 	</div>
 );
