@@ -1,5 +1,4 @@
 const path = require("path");
-//const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const webpack = require("webpack");
 const dotenv = require("dotenv");
@@ -15,7 +14,7 @@ module.exports = env => {
 	const isProduction = env === "production";
 	//const CSSExtract = new ExtractTextPlugin("styles.css");
 	return {
-		entry: "./src/app.js",
+		entry: ["babel-polyfill", "./src/app.js"],
 		output: {
 			path: path.join(__dirname, "public", "dist"),
 			filename: "bundle.js",
@@ -32,11 +31,15 @@ module.exports = env => {
 					use: [
 						{
 							loader: MiniCssExtractPlugin.loader,
+							options: {
+								publicPath: path.join(__dirname, "public", "images"),
+							},
 						},
 						{
 							loader: "css-loader",
 							options: {
 								sourceMap: true,
+								url: false,
 							},
 						}, // to import css using '@import' and interprets to import/require
 						{
